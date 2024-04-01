@@ -6,7 +6,7 @@ type Props = {};
 const NavBar = (props: Props) => {
   return (
     <header className="mt-6 mx-auto w-[90%]">
-      <nav className="flex items-center justify-between shadow-xl text-black bg-whitee rounded-full p-6 ">
+      <nav className="flex items-center justify-between shadow-xl text-black bg-white rounded-full p-6 ">
         <Link
           className="leading-tight tracking-tighter font-bold text-2xl md:text-3xl"
           href={"/"}
