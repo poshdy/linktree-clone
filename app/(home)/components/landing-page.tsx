@@ -1,14 +1,14 @@
 import React from "react";
-import Container from "./shared/Container";
+import Container from "../../../components/shared/Container";
 import Figure from "./page-figure";
-import ActionButton from "./shared/ActionButton";
+import ActionButton from "../../../components/shared/ActionButton";
 
 type Props = {};
 
 const LandingPage = (props: Props) => {
   return (
     <Container>
-      <section className="flex flex-col item-center justify-center space-y-5 lg:flex-row lg:justify-around lg:items-center min-h-[80vh] mt-20 font-bold">
+      <section className="flex flex-col item-center justify-center space-y-5 lg:flex-row lg:justify-around lg:items-center min-h-[90vh] mt-20 font-bold">
         <section className="lg:w-[50%] w-full flex items-center md:items-start flex-col space-y-8">
           <div className="text-dark flex flex-col item-center lg:items-start ">
             <h2 className="text-4xl md:text-7xl leading-tight tracking-tighter text-center md:text-left">

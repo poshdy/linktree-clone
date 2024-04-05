@@ -1,12 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import image from "@/public/posh.jpeg";
-import { Button } from "./ui/button";
+import { Button } from "../../../components/ui/button";
 import { CiFacebook } from "react-icons/ci";
 import { PiInstagramLogo } from "react-icons/pi";
 import { CiLinkedin } from "react-icons/ci";
 import { RxDiscordLogo } from "react-icons/rx";
-import Header from "./shared/header";
+import Header from "../../../components/shared/header";
 
 const Figure = () => {
   return (
