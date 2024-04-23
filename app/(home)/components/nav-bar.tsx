@@ -1,30 +1,40 @@
 import Container from "@/components/shared/Container";
 import React from "react";
 import Link from "next/link";
+import { auth } from "@/auth";
+import { Session } from "next-auth";
 type Props = {};
 
-const NavBar = (props: Props) => {
+const NavBar = async (props: Props) => {
+  const session: Session | null = await auth();
   return (
-    <header className="mt-6 mx-auto w-[90%]">
-      <nav className="flex items-center justify-between shadow-xl text-black bg-white rounded-full p-6 ">
-        <Link
-          className="leading-tight tracking-tighter font-bold text-2xl md:text-3xl"
-          href={"/"}
-        >
-          Reach me!
+    <header className="container pt-4 pb-6">
+      <nav className="flex items-center justify-between  text-gray-400 p-2 text-lg md:text-xl ">
+        <Link className="leading-tight tracking-tighter font-bold" href={"/"}>
+          Reach <span className="text-white">me!</span>
         </Link>
-        <div className="flex items-center gap-x-2">
+        <div className="flex items-center text-gray-200 gap-x-2 uppercase font-bold text-xs">
           <Link
-            className="text-md rounded-2xl p-3 md:p-5 text-sm hover:bg-gray-400 duration-300 ease-in-out bg-gray-300 text-black"
-            href={"auth"}
+            className="px-8 py-4 rounded-full bg-blue"
+            href={session?.user ? "dashboard" : "sign-up"}
           >
-            Login
+            {session?.user ? "dashboard" : "Create account"}
           </Link>
           <Link
-            className="text-md rounded-2xl p-3 md:p-5 text-sm hover:bg-dark duration-300 ease-in-out  bg-blue text-white"
-            href={"auth"}
+            className=" rounded-3xl
+            border-2
+            border-dashed
+            border-blue 
+            px-6 py-4
+            duration-300
+            hover:rounded-md 
+            font-bold 
+            uppercase
+            transition-all
+            ease-in-out"
+            href={"login"}
           >
-            Sign up Free
+            Login
           </Link>
         </div>
       </nav>

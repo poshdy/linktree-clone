@@ -1,17 +1,14 @@
 import LandingPage from "@/app/(home)/components/landing-page";
-import MidSection from "@/app/(home)/components/mid-section";
-import Container from "@/components/shared/Container";
 import React from "react";
 
 type Props = {};
 
-const page = (props: Props) => {
+const HomePage = async (props: Props) => {
   return (
-    <>
+    <main className="container min-h-screen flex items-center flex-col mt-4">
       <LandingPage />
-      <MidSection />
-    </>
+    </main>
   );
 };
 
-export default page;
+export default HomePage;

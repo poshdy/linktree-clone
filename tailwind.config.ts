@@ -19,11 +19,9 @@ const config = {
     },
     extend: {
       colors: {
-        dark: "#173f5f",
-        blue: "#20639b",
-        green: "#3caea3",
-        yellow: "#f6d55c",
-        orange: "#ed553b",
+        dark: "#1A1A1A",
+        blue: "#2233C6",
+        white: "text-gary-200",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -79,7 +77,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("daisyui")],
 } satisfies Config;
 
 export default config;

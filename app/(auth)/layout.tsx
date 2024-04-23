@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "../globals.css";
-import NavBar from "./components/nav-bar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -9,11 +8,11 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Reach me!",
+  title: "Authentiation",
   description: "Linktree clone (just for practicing purposes)",
 };
 
-export default async function RootLayout({
+export default async function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -21,7 +20,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} bg-dark`}>
-        <NavBar />
+        <h3 className=""></h3>
         {children}
       </body>
     </html>

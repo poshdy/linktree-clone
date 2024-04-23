@@ -1,9 +1,6 @@
 import React from "react";
-import Figure from "./page-figure";
-import Container from "../../../components/shared/Container";
-import ActionButton from "../../../components/shared/ActionButton";
-import Header from "../../../components/shared/header";
-import MidSectionFigure from "./mid-section-figure";
+import ActionButton from "@/components/shared/ActionButton";
+import Header from "@/components/shared/header";
 
 type Props = {};
 
@@ -18,7 +15,6 @@ const MidSection = (props: Props) => {
           />
           <ActionButton />
         </section>
-        <MidSectionFigure />
       </section>
     </section>
   );
