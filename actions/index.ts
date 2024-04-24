@@ -1,7 +1,7 @@
 "use server";
 
 import { signIn } from "@/auth";
-import { db } from "@/db";
+import  db  from "@/db";
 import { Session } from "next-auth";
 import { auth } from "@/auth";
 import { RedirectType, notFound, redirect } from "next/navigation";

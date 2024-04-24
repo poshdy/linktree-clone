@@ -1,4 +1,4 @@
-import { db } from "@/db";
+import db from "@/db";
 import React from "react";
 
 const Dashboard = async ({ params }: { params: { username: string } }) => {
@@ -7,7 +7,7 @@ const Dashboard = async ({ params }: { params: { username: string } }) => {
       username: params.username,
     },
   });
-  return <div>{user?.username}</div>;
+  return <div >{user?.username}</div>;
 };
 
 export default Dashboard;
