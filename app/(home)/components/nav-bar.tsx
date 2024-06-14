@@ -1,42 +1,30 @@
-import Container from "@/components/shared/Container";
 import React from "react";
 import Link from "next/link";
-import { auth } from "@/auth";
 import { Session } from "next-auth";
-type Props = {};
+import Logo from "@/components/shared/logo";
+import CallToAction from "./call-to-action";
+import { usePathname } from "next/navigation";
 
-const NavBar = async (props: Props) => {
-  const session: Session | null = await auth();
+const NavBar = ({ session }: { session: Session | null }) => {
   return (
-    <header className="container pt-4 pb-6">
-      <nav className="flex items-center justify-between  text-gray-400 p-2 text-lg md:text-xl ">
-        <Link className="leading-tight tracking-tighter font-bold" href={"/"}>
-          Reach <span className="text-white">me!</span>
-        </Link>
-        <div className="flex items-center text-gray-200 gap-x-2 uppercase font-bold text-xs">
+    <header className={"w-full pt-4 pb-6 fixed top-0 bg-transparent z-50"}>
+      <nav className="w-[40%] mx-auto flex items-center justify-between rounded-full bg-gradient-to-br from-neutral-800 to-neutral-900 border border-neutral-500 text-gray-400 p-2  ">
+        <Logo />
+        <div className="flex items-center gap-2">
           <Link
-            className="px-8 py-4 rounded-full bg-blue"
-            href={session?.user ? "dashboard" : "sign-up"}
+            className="text-sm hover:bg-black px-3 py-1 rounded-full duration-300 ease-in-out"
+            href={"/"}
           >
-            {session?.user ? "dashboard" : "Create account"}
+            home
           </Link>
           <Link
-            className=" rounded-3xl
-            border-2
-            border-dashed
-            border-blue 
-            px-6 py-4
-            duration-300
-            hover:rounded-md 
-            font-bold 
-            uppercase
-            transition-all
-            ease-in-out"
-            href={"login"}
+            className="text-sm hover:bg-black px-3 py-1 rounded-full duration-300 ease-in-out"
+            href={"/"}
           >
-            Login
+            pricing
           </Link>
         </div>
+        <CallToAction session={session} />
       </nav>
     </header>
   );

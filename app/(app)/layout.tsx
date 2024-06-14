@@ -1,11 +1,8 @@
-import { auth } from "@/auth";
-import db from "@/db";
-import { Session } from "next-auth";
 import { Poppins } from "next/font/google";
 import { redirect } from "next/navigation";
 import "../globals.css";
-import SideBar from "./dashboard/components/side-bar";
-import Preview from "./dashboard/components/preview";
+import { getCurrentUser } from "@/actions/shared";
+import { Toaster } from "react-hot-toast";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "400", "500", "600", "700"],
@@ -20,28 +17,17 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session: Session | null = await auth();
-  // const user = await db.page.findUnique({
-  //   where: { userId: session?.user?.id },
-  // });
-
-  // if (session && user) {
-  //   redirect(`/dashboard/${user?.username}`);
-  // }
-  if (!session?.user) {
-    redirect(`/`);
+  const { session } = await getCurrentUser();
+  if (!session) {
+    redirect(`/sign-up`);
   }
-
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} min-h-screen p-3 bg-gray-200 text-dark grid grid-cols-6 gap-2`}
+        className={`${poppins.className} min-h-screen bg-gray-200 text-dark`}
       >
-        <SideBar user={"Poshdeto"} />
-        <main className=" col-span-3 container border border-red-900">
-          {children}
-        </main>
-        <Preview />
+        <Toaster position="top-center" />
+        {children}
       </body>
     </html>
   );

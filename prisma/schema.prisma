@@ -60,26 +60,130 @@ model VerificationToken {
   @@id([identifier, token])
 }
 
+enum PageStyle {
+  Custom
+  Theme
+}
+
 model Page {
-  username String  @unique
-  userId   String  @unique
-  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  title    String?
+  username String @unique
+  userId   String @unique
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  bio      String?
-  location String?
+  profile_photo String? @default("https://res.cloudinary.com/dtmu2pglc/image/upload/v1714336440/yp8dhxc71piey13f6ojl.png")
+  title         String?
+  bio           String?
+  location      String?
 
-  bgColor String  @default("#000")
-  header  String?
+  styleType   PageStyle  @default(Theme)
+  templatesId String?
+  theme       Templates? @relation(fields: [templatesId], references: [id])
 
+  bgColor   String? @default("#000")
+  textColor String? @default("")
+  buttonId  String?
+  button    Button? @relation(fields: [buttonId], references: [id])
+  header    String?
+
+  visits    Int?     @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
+  links     links[]
+  Icons     Icons?
+  Store     Store[]
+}
+
+enum ButtonType {
+  Fill
+  Outline
+  Shadow
+}
+
+enum ButtonStyle {
+  fullyRounded
+  Rectangle
+  Rounded
+}
+
+model Button {
+  id          String       @id @default(cuid())
+  type        ButtonType   @default(Fill)
+  color       String?
+  textColor   String?
+  borderColor String?
+  shadowColor String?
+  visible     Boolean      @default(true)
+  style       ButtonStyle? @default(fullyRounded)
+  createdAt   DateTime     @default(now())
+  Page        Page[]
+}
+
+model links {
+  id           String   @id @default(cuid())
+  title        String
+  url          String
+  pageUsername String
+  clicks       Int?     @default(0)
+  page         Page     @relation(fields: [pageUsername], references: [username])
+  visible      Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt()
+}
+
+enum Position {
+  Top
+  Bottom
+}
+
+model Icons {
+  id           String    @id @default(cuid())
+  position     Position  @default(Top)
+  pageUsername String    @unique
+  page         Page?     @relation(fields: [pageUsername], references: [username])
+  SmLinks      SmLinks[]
+  createdAt    DateTime  @default(now())
+}
+
+model SmLinks {
+  id        String   @id @default(cuid())
+  iconsId   String?
+  Icons     Icons?   @relation(fields: [iconsId], references: [id])
+  name      String
+  visible   Boolean  @default(true)
+  url       String
+  clickes   Int?     @default(0)
+  createdAt DateTime @default(now())
 }
 
 model Templates {
-  id        String   @id @default(cuid())
-  bgColor   String
-  textColor String
-  title     String   @default("Reach.me!")
-  createdAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  name        String   @default("")
+  bgColor     String
+  textColor   String
+  buttonColor String   @default("#fff")
+  title       String   @default("Reach.me!")
+  createdAt   DateTime @default(now())
+  Page        Page[]
+}
+
+model Store {
+  id           String     @id @default(cuid())
+  page         Page?      @relation(fields: [pageUsername], references: [username], onDelete: Cascade)
+  pageUsername String?    @unique
+  products     Products[]
+  viwes        Int?       @default(0)
+  createdAt    DateTime   @default(now())
+}
+
+model Products {
+  id              String   @id @default(cuid())
+  storeId         String
+  store           Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  productName     String
+  productImageUrl String
+  price           Decimal?
+  productUrl      String
+  clicks          Int?     @default(0)
+  visible         Boolean  @default(true)
+  createdAt       DateTime @default(now())
 }

@@ -9,9 +9,11 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "px-8 py-4 rounded-full bg-blue",
+        default:
+          "px-8 py-4 rounded-full bg-blue uppercase font-bold text-white hover:bg-blue/90 duration-300 ease-in-out",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          action: "p-2 rounded-full border border-neutral-200 bg-transparent",
         outline:
           "rounded-3xl border-2 border-dashed border-blue px-8 py-6 duration-300 hover:rounded-md font-bold uppercase    transition-all ease-in-out",
         secondary:

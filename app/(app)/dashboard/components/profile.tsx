@@ -1,17 +1,22 @@
-import Title from "@/components/shared/title";
-import { User } from "@prisma/client";
+import { Page } from "@/types";
+import Image from "next/image";
 import React from "react";
 
 type Props = {
-  user: string;
+  user: Page;
 };
 
 const Profile = ({ user }: Props) => {
   return (
-    <section className="flex items-center justify-start border-2 border-dark gap-2 rounded-full w-full px-2 py-2">
-      <div className="w-8 h-8 rounded-full bg-black"></div>
-      <Title className="text-base font-semibold" title={user} />
-    </section>
+    <div className="w-12 h-12 relative md:w-12 md:h-12 ">
+      <Image
+        alt={user.username}
+        src={user.profile_photo!!}
+        fill
+        className="object-cover rounded-full border-2 border-neutral-400"
+        sizes="100vw,100vh"
+      />
+    </div>
   );
 };
 

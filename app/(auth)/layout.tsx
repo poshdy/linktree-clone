@@ -19,10 +19,7 @@ export default async function AuthLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} bg-dark`}>
-        <h3 className=""></h3>
-        {children}
-      </body>
+      <body className={`${poppins.className} bg-dark`}>{children}</body>
     </html>
   );
 }

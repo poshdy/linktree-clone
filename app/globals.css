@@ -35,6 +35,13 @@
     --radius: 0.5rem;
   }
 
+  .my-config {
+    --darkmode: 1;
+    --h-accent: 223;
+    --s-accent: 100%;
+    --l-accent: 61%;
+  }
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -71,6 +78,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-dark text-foreground;
   }
 }

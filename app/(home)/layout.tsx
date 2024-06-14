@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "../globals.css";
-import NavBar from "./components/nav-bar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,8 +19,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} bg-dark`}>
-        <NavBar />
+      <body className={`${poppins.className} min-h-screen relative bg-dark`}>
         {children}
       </body>
     </html>
